@@ -1,0 +1,40 @@
+import tkinter as tk
+from PIL import Image, ImageTk
+import subprocess
+
+def run_recognize():
+    subprocess.run(["python", "iris_check.py"])
+
+root = tk.Tk()
+root.title("Iris Recognition")
+root.geometry("1400x800")
+
+# Load the image using PIL
+image_path = r'F:\CGIproject\iris.jpeg'  # save the image in the same folder.
+pil_image = Image.open(image_path)
+bg_image = ImageTk.PhotoImage(pil_image)
+
+# Create and place the background image
+bg_label = tk.Label(root, image=bg_image)
+bg_label.place(relheight=1, relwidth=1)
+
+color1 = '#7bafb2'
+color2 = 'BLACK'
+
+button1 = tk.Button(
+    bg_label,
+    background=color1,
+    foreground=color2,
+    highlightthickness=2,
+    highlightbackground=color2,
+    highlightcolor='WHITE',
+    width=10,
+    height=2,
+    border=0,
+    text='START',
+    font=('Arial', 16, 'bold'),
+    command=run_recognize
+)
+button1.place(x=640, y=300)
+
+root.mainloop()
